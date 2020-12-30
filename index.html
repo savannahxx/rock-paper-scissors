@@ -5,6 +5,12 @@
 	<meta charset="UTF-8"/>
 </head>
 <body>
+	<h1>Rock, Paper, Scissors</h1>
+	<p>Make your choice:</p>
+	<button type="button" id="Rock">Rock</button>
+	<button type="button" id="Paper">Paper</button>
+	<button type="button" id="Scissors">Scissors</button>
+	
 	<script>
 	let playerScore = 0;
 	let computerScore = 0;
@@ -19,25 +25,26 @@
 			return 'Scissors'
 	}
 
-	function playRound(playerSelection, computerSelection) {
-		playerSelection = playerSelection.toLowerCase();
-		playerSelection = playerSelection.replace(playerSelection.charAt(0), playerSelection.charAt(0).toUpperCase());
+	function playRound(button) {
+		playerSelection = this.id;	
+		computerSelection = computerPlay();
+		
 		if ((playerSelection === 'Rock' && computerSelection === 'Paper')
 			|| (playerSelection === 'Scissors' && computerSelection === 'Rock')
 			|| (playerSelection === 'Paper' && computerSelection === 'Scissors')) {
 			computerScore++;
-			return 'You lose! ' + computerSelection + ' beats ' + playerSelection;
+			console.log('You lose! ' + computerSelection + ' beats ' + playerSelection);
 		}
 		else if ((playerSelection === 'Paper' && computerSelection === 'Rock')
 			|| (playerSelection === 'Rock' && computerSelection === 'Scissors')
 			|| (playerSelection === 'Scissors' && computerSelection === 'Paper')) {
 			playerScore++;
-			return 'You win! ' + playerSelection + ' beats ' + computerSelection;
+			console.log('You win! ' + playerSelection + ' beats ' + computerSelection);
 		}
 		else 
-			return 'Draw!'
+			console.log('Draw!');
 	}
-
+/*
 	function game() {
 		let computerSelection;
 		let playerSelection;
@@ -56,7 +63,11 @@
 			console.log('You are the official loser...');
 		else
 			console.log('It\'s a tie.');
-	}
+	}*/
+
+	const buttons = document.querySelectorAll('button');
+	buttons.forEach((button) => button.addEventListener('click', playRound));
+	
 	</script>
 </body>
 </html>
